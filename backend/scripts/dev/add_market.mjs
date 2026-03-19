@@ -9,6 +9,7 @@ async function addMarket() {
             symbol: "TESTUSD",
             base: "TEST",
             quote: "USD",
+            lastPrice: 0,
         }
     });
     console.log("Market added:", market);

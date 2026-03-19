@@ -1,22 +1,29 @@
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import {StrictMode} from "react";
-import {createRoot} from "react-dom/client";
-import {ThemeProvider} from "@emotion/react";
-import theme from "./theme.ts";
-import {CssBaseline} from "@mui/material";
-import Router from "./routes/Router.tsx";
-import {WebSocketProvider} from "./contexts/WebSocketProvider.tsx";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Router } from "./routes/Router";
+import { useWebSocketStore } from "./stores/websocket";
+import { useEffect } from "react";
+import "./index.css";
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
+
+function WsInit({ children }: { children: React.ReactNode }) {
+  const connect = useWebSocketStore((s) => s.connect);
+  useEffect(() => {
+    connect();
+  }, [connect]);
+  return <>{children}</>;
+}
 
 createRoot(document.getElementById("root")!).render(
-    <StrictMode>
-        <WebSocketProvider>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Router />
-            </ThemeProvider>
-        </WebSocketProvider>
-    </StrictMode>
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <WsInit>
+        <Router />
+      </WsInit>
+    </QueryClientProvider>
+  </StrictMode>
 );
