@@ -1,0 +1,110 @@
+name: "🌐 Global Issue"
+description: "Create a global issue"
+labels: ["🎈 To be filtered"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Global Issue
+        Use this template to track a feature or bug that affects subrepositories.
+
+  - type: input
+    id: summary
+    attributes:
+      label: "Summary"
+      description: "Provide a short description of the feature or bug"
+      placeholder: "E.g., Unified Authentication Flow"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: "Version and build"
+      description: "App version and build number, visible in Settings"
+      placeholder: "E.g., 3.2.1 (97)"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: "Device and OS version"
+      placeholder: "E.g., iPhone 15 Pro, iOS 18.2"
+    validations:
+      required: true
+
+  - type: input
+    id: workspace
+    attributes:
+      label: "Workspace and user profile"
+      description: "Workspace involved and permission level of the account"
+      placeholder: "E.g., workspace demo, exhibitor profile"
+    validations:
+      required: true
+
+  - type: textarea
+    id: preconditions
+    attributes:
+      label: "Preconditions"
+      description: "Required state before reproducing"
+      placeholder: "E.g., logged in, lineup selected, sync completed"
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to reproduce"
+      description: "Numbered steps allowing anyone to reproduce the issue"
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected result"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual result"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: "Frequency"
+      options:
+        - "Systematic"
+        - "Intermittent"
+        - "Observed once"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Severity"
+      options:
+        - "P0 - Blocking"
+        - "P1 - Major"
+        - "P2 - Minor"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots and logs"
+      description: "Optional: screenshots, designs, or exported application logs"
+      placeholder: "Paste links to screenshots, designs or logs."
+    validations:
+      required: false
